@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Şehmus Seyhan Kimdir?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            margin: 20px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .profile-section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background-image: url('aliiii.PNG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 6px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .profile-image:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.8);
+        }
+
+        .profile-image:hover::before {
+            transform: translateX(100%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #64748b;
+            font-weight: 400;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            margin: 20px;
+            border-radius: 30px;
+            padding: 80px 0;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.3s; }
+        .section:nth-child(3) { animation-delay: 0.5s; }
+        .section:nth-child(4) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .bio-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #475569;
+            text-align: center;
+        }
+
+        .bio-content h1 {
+            font-size: 2rem;
+            color: #dc2626;
+            margin: 30px 0 20px;
+            text-shadow: none;
+            background: none;
+            -webkit-text-fill-color: #dc2626;
+        }
+
+        .bio-content p {
+            margin-bottom: 8px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .achievement-card h3 {
+            color: #1a202c;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .achievement-card p {
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* Gallery Improvements */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h1 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            background: none;
+            -webkit-text-fill-color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            color: #e2e8f0;
+            text-align: center;
+            padding: 50px 0;
+            margin: 20px;
+            border-radius: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header, .main-content, footer {
+                margin: 10px;
+                border-radius: 20px;
+            }
+
+            header {
+                padding: 60px 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 250px;
+                text-align: center;
+            }
+
+            .achievements-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+
+            .main-content {
+                padding: 60px 0;
+            }
+
+            .section {
+                margin-bottom: 80px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus states for accessibility */
+        .nav-btn:focus,
+        .social-link:focus {
+            outline: 3px solid #667eea;
+            outline-offset: 3px;
+        }
+
+        /* Loading animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="profile-section">
+                <div class="profile-image"></div>
+                <h1>Ali Şehmus Seyhan</h1>
+                <p class="subtitle">GÜLcü • arif abi • ekmekci</p>
+                <div class="nav-buttons">
+                    <a href="#hakkimda" class="nav-btn">Hakkımda</a>
+                    <a href="#basarilar" class="nav-btn">Başarılar(yok)</a>
+                    <a href="#galeri" class="nav-btn">Galeri</a>
+                    <a href="#iletisim" class="nav-btn">İletişim</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- About Section -->
+            <section id="hakkimda" class="section">
+                <h2>Hakkımda</h2>
+                <div class="bio-content">
+                    <p>Merhaba! Ben Ali Şehmus Seyhan. GÜL yeteneklerimi ve davul yeteneklerimi harmanlayarak, her GÜL satışında millete fark atmaya çalışıyorum. Apo'yu Necmi'yi ve Ahmet Eren'i çok seviyorum en iyi arkadaşlarım</p>
+                    <br>
+                    <h1>ÖLÜM LİSTEM</h1> <br>
+                    <p>apo</p>
+                    <p>necmi</p>
+                    <p>ahmet eren</p>
+                    <p>ege</p>
+                    <p>arda(lamer)</p>
+                    <p>arda(kambur)</p>
+                    <p>nevzat</p>
+                    <p>harun</p>
+                    <p>mustafa</p>
+                    <p>celil</p>
+                    <p>baran</p>
+                    <p>veysi</p>
+                </div>
+            </section>
+
+            <!-- Achievements Section -->
+            <section id="basarilar" class="section">
+                <h2>Başarılarım</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <h3>🎯 Gül satışı</h3>
+                        <p>Çeşitli sektörlerde başarılı bir şekilde GÜL sattım. Zamanında teslim ve kalite standartlarını koruyarak müşteri memnuniyeti sağladım.</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>💡 Davulculuk</h3>
+                        <p>Kürt düğünlerinde davula vurup eğlenerek para kazandım</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>🤝 Sevgi</h3>
+                        <p>Sınıftaki herkes GÜL sattığım için beni çok sever ve sık sık adımı anarlar</p>
+                    </div>
+                    <div class="achievement-card">
+                        <h3>📈 Sürekli Gelişim</h3>
+                        <p>Daha çok GÜL satmak ve davul çalmak için antrenman yapıyorum</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="galeri" class="section">
+                <h2>Galeri</h2>
+                <div class="gallery-content">
+                    <p style="font-size: 1.3rem; color: #64748b; margin-bottom: 30px;">Hayatımdan kareler</p>
+
+                    <!-- Gallery Grid -->
+                    <div class="gallery-grid">
+
+                        <div class="gallery-item">
+                            <img src="s.jpeg" alt="Yürürken 2">
+                            <div class="gallery-overlay">
+                                <h1>Yürürken</h1>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="dildo.PNG" alt="Dildo Ararken">
+                            <div class="gallery-overlay">
+                                <h1>Dildo Ararken</h1>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="şiir.PNG" alt="Şiir Okurken">
+                            <div class="gallery-overlay">
+                                <h1>Şiir Okurken</h1>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="sigmna.PNG" alt="Sigma Olurken">
+                            <div class="gallery-overlay">
+                                <h1>Sigma Olurken</h1>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="uyurken.PNG" alt="Uyurken">
+                            <div class="gallery-overlay">
+                                <h1>Uyurken</h1>
+                            </div>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="burun.PNG" alt="Burnumu Kaşırken">
+                            <div class="gallery-overlay">
+                                <h1>Burnumu Kaşırken</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="iletisim" class="section">
+                <h2>İletişim</h2>
+                <div class="contact-content">
+                    <p style="font-size: 1.2rem; color: #64748b;">Benimle iletişime geçmek için aşağıdaki kanalları kullanabilirsiniz. Her türlü GÜL satışına ve sövüş önerisine açığım.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">@</div>
+                            <span>bedavapanel@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <span>+90 (533) 155 16 7</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <span>Kürdistan</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link">ALi</a>
+                        <a href="#" class="social-link">Şe</a>
+                        <a href="#" class="social-link">Hm</a>
+                        <a href="#" class="social-link">Us</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Ali Şehmus Seyhan. Tüm düngel saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated background particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Enhanced hover effects for achievement cards
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
